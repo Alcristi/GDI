@@ -1,0 +1,52 @@
+Esquema Lógico
+Direitos (IdDireitos, Validade)
+
+Projeto (IdProjeto, Título, Orçamento, Estúdio,IdDireitos!);
+IdDireitos -> Direitos (IdDireitos)
+
+Profissional(IDProfissional, Nome);
+
+Ator(IDProfissional, Tipo);
+IDProfissional-> Profissional(IDProfissional)
+
+Roteirista(IDProfissional,modificador,especialização);
+IDProfissional-> Profissional(IDProfissional)
+
+Direção(IDProfissional,cargo,especialização);
+IDProfissional-> Profissional(IDProfissional)
+
+
+Roteiro(IDProfissional,data_criacao,conteudo); 
+IDProfissional-> Roteirista(IDProfissional)
+IDRevisor-> Direção(IDRevisor)
+
+RoteiroFinal (IdRoteiroFinal, Título, Descrição,data_criacao,[IdProjeto]!);
+IdProjeto-> Projeto (IdProjeto)
+IDEquipe,data_criacao -> Roteiro(IDEquipe,data_criacao)
+
+Revisa(IDProfissional,IDRevisor,data_revisao,[IdRoteiroFinal]); 
+IDProfissional-> Roteirista(IDProfissional)
+IDRevisor-> Direção(IDRevisor)
+
+Cena (IdCena, Duração, [IdProjeto]!);
+IdProjeto-> Projeto (IdProjeto)
+
+Trabalha (IDEquipe, IdCena);
+IDProfissional-> Profissional(IDProfissional)
+IdCena-> Cena (IdCena)
+
+Fornecedor (CNPJ, Nome, end_rua,end_cidade,end_numero);
+
+Contato (CNPJ,contato)
+CNPJ-> Fornecedor (CNPJ)
+
+Equipamento (IdEquipamento, Nome, Tipo);
+
+Contrato(IdEquipamento ,CNPJ,IdCena,data_uso);
+CNPJ-> Fornecedor (CNPJ)
+IdEquipamento -> Equipamento(IdEquipamento)
+IdCena-> Cena (IdCena)
+
+
+
+
